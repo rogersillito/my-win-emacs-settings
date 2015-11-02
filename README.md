@@ -10,6 +10,7 @@ How my emacs/spacemacs setup works
 - extra themes located in config/themes
 
 
-Updating spacemacs (from main repo)
--------------------------------------
+Updating spacemacs (from spacemacs repo)
+----------------------------------------
+cd config/.emacs.d
 git pull
