@@ -1,0 +1,6 @@
+config/.emacs.d/*
+_emacs/*
+
+OpenInNewOrExistingEmacs.exe
+.spacemacs~
+.spacemacs.un~
