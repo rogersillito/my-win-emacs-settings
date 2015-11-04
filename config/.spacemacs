@@ -27,12 +27,15 @@
      ;; shell
      ;; syntax-checking
      csharp
+     javascript
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      ember-mode
+   )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -168,6 +171,22 @@ layers configuration."
   (global-linum-mode 1)
   (menu-bar-mode 1)
   (desktop-save-mode 1)
+  (setq paradox-github-token "b8152c3af6960f96134b90555bb266c3e4cf0f11")
+
+  (defun bf-pretty-print-xml-region (begin end)
+    "Pretty format XML markup in region. You need to have nxml-mode
+http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
+this.  The function inserts linebreaks to separate tags that have
+nothing but whitespace between them.  It then indents the markup
+by using nxml's indentation rules."
+    (interactive "r")
+    (save-excursion
+      (nxml-mode)
+      (goto-char begin)
+      (while (search-forward-regexp "\>[ \\t]*\<" nil t) 
+        (backward-char) (insert "\n"))
+      (indent-region begin end))
+    (message "Ah, much better!"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
