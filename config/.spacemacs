@@ -28,6 +28,7 @@
      ;; syntax-checking
      csharp
      javascript
+     ;; php
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -35,6 +36,7 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(
                                       ember-mode
+                                      xahk-mode
    )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -171,8 +173,10 @@ layers configuration."
   (global-linum-mode 1)
   (menu-bar-mode 1)
   (desktop-save-mode 1)
+  ;;TODO: no good putting this here and versioning in github!
   (setq paradox-github-token "b8152c3af6960f96134b90555bb266c3e4cf0f11")
 
+  ;;TODO: move this to another file
   (defun bf-pretty-print-xml-region (begin end)
     "Pretty format XML markup in region. You need to have nxml-mode
 http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
