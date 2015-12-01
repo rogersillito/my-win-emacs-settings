@@ -22,7 +22,7 @@
      emacs-lisp
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
-     ;; markdown
+     markdown
      ;; org
      ;; shell
      ;; syntax-checking
@@ -165,7 +165,7 @@ before layers configuration."
    (setq-default omnisharp-server-executable-path "D:/tools/OMNISHARP/OmniSharpServer/OmniSharp.exe")
   )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
