@@ -28,6 +28,7 @@
      ;; syntax-checking
      csharp
      javascript
+     html
      ;; php
      )
    ;; List of additional packages that will be installed wihout being
@@ -37,6 +38,7 @@
    dotspacemacs-additional-packages '(
                                       ember-mode
                                       xahk-mode
+                                      less-css-mode
    )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
