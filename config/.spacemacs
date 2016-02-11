@@ -17,7 +17,7 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
      ;; (git :variables
@@ -39,6 +39,8 @@
                                       ember-mode
                                       xahk-mode
                                       less-css-mode
+                                      tern
+                                      tern-auto-complete
    )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -165,6 +167,25 @@ before layers configuration."
    (server-start)
    ;(setq x-select-enable-clipboard nil) ; see: http://stackoverflow.com/questions/26472216/how-to-copy-text-in-emacs-evil-mode-without-overwriting-the-clipboard
    (setq-default omnisharp-server-executable-path "D:/tools/OMNISHARP/OmniSharpServer/OmniSharp.exe")
+   (setq auto-completion-private-snippets-directory "~/snippets")
+   (setq auto-completion-enable-snippets-in-popup t)
+   )
+
+(defun dotspacemacs/user-init ()
+  "Initialization function for user code.
+It is called immediately after `dotspacemacs/init'.  You are free to put any
+user code."
+  ;; setup web-mode
+  (setq-default
+    web-mode-markup-indent-offset 4
+    web-mode-code-indent-offset 4
+    web-mode-css-indent-offset 4
+  )
+  ;; (nb: not sure if all the razor-specific entries are required, also I had to fully restart emacs rather than resync config)
+  (add-to-list 'auto-mode-alist '("\\.cshtml$" . web-mode))
+  (setq web-mode-engines-alist
+        '(("razor"    . "\\.cshtml$'"))
+        )
   )
 
 (defun dotspacemacs/user-config ()
@@ -174,7 +195,10 @@ layers configuration."
   (add-to-list 'custom-theme-load-path "~/themes")
   (global-linum-mode 1)
   (menu-bar-mode 1)
+  (global-company-mode)
   (desktop-save-mode 1)
+  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
   ;;TODO: no good putting this here and versioning in github!
   (setq paradox-github-token "b8152c3af6960f96134b90555bb266c3e4cf0f11")
 
