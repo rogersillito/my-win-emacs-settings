@@ -180,6 +180,7 @@ before layers configuration."
    (setq-default omnisharp-server-executable-path "D:/tools/OMNISHARP/OmniSharpServer/OmniSharp.exe")
    (setq-default js2-basic-offset 2)
    (setq-default js2-indent-level 2)
+   (setq-default js-indent-level 2)
    (setq-default css-indent-offset 2)
    )
 
