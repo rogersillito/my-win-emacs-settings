@@ -17,8 +17,15 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
-     ;; better-defaults
+     autohotkey
+     (auto-completion :variables
+                        auto-completion-return-key-behavior 'complete
+                        auto-completion-tab-key-behavior 'cycle
+                        auto-completion-complete-with-key-sequence "FF"
+                        auto-completion-complete-with-key-sequence-delay 0.5
+                        auto-completion-private-snippets-directory "~/snippets"
+                        auto-completion-enable-snippets-in-popup t
+                        )
      emacs-lisp
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
@@ -28,8 +35,13 @@
      ;; syntax-checking
      csharp
      javascript
+     react
      html
      ;; php
+     colors
+     ;; hack to get tern working: https://github.com/ternjs/tern/issues/256  &  https://github.com/syl20bnr/spacemacs/issues/5733
+     ;; (javascript :variables tern-command '("node" "c:/users/nwrs1/appdata/roaming/npm/node_modules/tern/bin/tern"))
+     pandoc
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -37,10 +49,9 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(
                                       ember-mode
-                                      xahk-mode
                                       less-css-mode
-                                      tern
-                                      tern-auto-complete
+                                      ;; tern
+                                      ;; tern-auto-complete
    )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -70,7 +81,7 @@ before layers configuration."
    dotspacemacs-startup-banner 'official
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(recents projects bookmarks)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -167,8 +178,9 @@ before layers configuration."
    (server-start)
    ;(setq x-select-enable-clipboard nil) ; see: http://stackoverflow.com/questions/26472216/how-to-copy-text-in-emacs-evil-mode-without-overwriting-the-clipboard
    (setq-default omnisharp-server-executable-path "D:/tools/OMNISHARP/OmniSharpServer/OmniSharp.exe")
-   (setq auto-completion-private-snippets-directory "~/snippets")
-   (setq auto-completion-enable-snippets-in-popup t)
+   (setq-default js2-basic-offset 2)
+   (setq-default js2-indent-level 2)
+   (setq-default css-indent-offset 2)
    )
 
 (defun dotspacemacs/user-init ()
@@ -177,9 +189,9 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   ;; setup web-mode
   (setq-default
-    web-mode-markup-indent-offset 4
-    web-mode-code-indent-offset 4
-    web-mode-css-indent-offset 4
+    web-mode-markup-indent-offset 2
+    web-mode-code-indent-offset 2
+    web-mode-css-indent-offset 2
   )
   ;; (nb: not sure if all the razor-specific entries are required, also I had to fully restart emacs rather than resync config)
   (add-to-list 'auto-mode-alist '("\\.cshtml$" . web-mode))
@@ -195,8 +207,9 @@ layers configuration."
   (add-to-list 'custom-theme-load-path "~/themes")
   (global-linum-mode 1)
   (menu-bar-mode 1)
-  (global-company-mode)
+  ;; (global-company-mode)
   (desktop-save-mode 1)
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
   (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
   (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
   ;;TODO: no good putting this here and versioning in github!

@@ -1,3 +1,4 @@
+@REM start emacs client
 @echo off
 set emacsdir=%_ToolsDir%\emacs
 set HOME=%emacsdir%\config
