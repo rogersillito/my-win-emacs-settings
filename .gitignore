@@ -1,7 +1,7 @@
 config/.emacs.d
 config/.emacs.d/*
 _emacs/*
-
+.emacs.d-BAK*
 OpenInNewOrExistingEmacs.exe
 .spacemacs~
 .spacemacs.un~
