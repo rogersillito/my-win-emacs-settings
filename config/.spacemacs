@@ -195,6 +195,7 @@ user code."
     web-mode-css-indent-offset 2
   )
   ;; (nb: not sure if all the razor-specific entries are required, also I had to fully restart emacs rather than resync config)
+  (setq-default evil-search-module 'evil-search)
   (add-to-list 'auto-mode-alist '("\\.cshtml$" . web-mode))
   (setq web-mode-engines-alist
         '(("razor"    . "\\.cshtml$'"))
