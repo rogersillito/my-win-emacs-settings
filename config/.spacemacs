@@ -37,6 +37,7 @@
      javascript
      react
      html
+     yaml
      ;; php
      colors
      ;; hack to get tern working: https://github.com/ternjs/tern/issues/256  &  https://github.com/syl20bnr/spacemacs/issues/5733
