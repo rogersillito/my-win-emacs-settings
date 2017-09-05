@@ -12,6 +12,9 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     typescript
+     windows-scripts
+     ruby
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -41,8 +44,25 @@
      ;; php
      colors
      ;; hack to get tern working: https://github.com/ternjs/tern/issues/256  &  https://github.com/syl20bnr/spacemacs/issues/5733
-     ;; (javascript :variables tern-command '("node" "c:/users/nwrs1/appdata/roaming/npm/node_modules/tern/bin/tern"))
+     ;; (javascript :variables tern-command '("node" "c:/Users/roger.sillito/AppData/roaming/npm/tern"))
      pandoc
+      ;; TODO: get this working...
+      ;; (if (string= system-type "windows-nt")
+      ;;    (progn
+      ;;      (if (string= (system-name) "BORIS")
+      ;;          (progn
+      ;;            (print "BORIS: Setting tern-command")
+      ;;            (javascript :variables tern-command '("node" "c:/Users/Roger/AppData/roaming/npm/tern"))
+      ;;            )
+      ;;        )
+      ;;      (if (string= (system-name) "KKD-RSILLITO")
+      ;;          (progn
+      ;;            (print "KKD-RSILLITO: Setting tern-command")
+      ;;            (javascript :variables tern-command '("node" "c:/Users/roger.sillito/AppData/roaming/npm/tern"))
+      ;;            )
+      ;;        )
+      ;;      )
+      ;;  )
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -50,6 +70,7 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(
                                       ember-mode
+                                      editorconfig
                                       less-css-mode
                                       ;; tern
                                       ;; tern-auto-complete
@@ -210,8 +231,9 @@ layers configuration."
   (add-to-list 'custom-theme-load-path "~/themes")
   (global-linum-mode 1)
   (menu-bar-mode 1)
+  (editorconfig-mode 1)
   ;; (global-company-mode)
-  (desktop-save-mode 1)
+  ;; (desktop-save-mode 1)
   (add-hook 'markdown-mode-hook 'pandoc-mode)
   (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
   (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
@@ -237,3 +259,16 @@ by using nxml's indentation rules."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(markdown-command "rdiscount"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
